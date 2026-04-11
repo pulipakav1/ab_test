@@ -188,8 +188,3 @@ MIT — use and modify freely.
 
 ---
 
-<p align="center">
-  Built by <a href="https://linkedin.com/in/YOUR-LINKEDIN-SLUG">Rohit Pulipaka</a>
-  &nbsp;·&nbsp;
-  <a href="mailto:pvishnurohit@gmail.com">pvishnurohit@gmail.com</a>
-</p>
