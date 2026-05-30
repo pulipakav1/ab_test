@@ -83,6 +83,12 @@ unusually robust.
 - No novelty effect — the new page never showed early promise
   that faded; it was flat-to-negative throughout
 
+**Heterogeneous treatment effects (HTE):**
+- Results segmented by user type (new vs returning), time of day, and weekday vs weekend
+- Per-segment lift reported with 95% CI and significance flags
+- Identifies whether any sub-population benefits even when the aggregate does not
+- Output: `reports/hte_analysis.png`
+
 **Data quality:**
 - Removed 3,894 duplicate user sessions — kept first visit per user
 - Removed 3,893 mismatched rows — users shown wrong page for
@@ -154,14 +160,15 @@ effort elsewhere.
 ```
 ab_test_analysis/
 ├── src/
-│   ├── analysis.py           # Frequentist z-test, power analysis,
-│   │                         # business impact
-│   └── further_analysis.py   # Novelty effect, Bayesian analysis
+│   ├── analysis.py           # Frequentist z-test, power analysis, business impact
+│   ├── further_analysis.py   # Novelty effect, Bayesian analysis
+│   └── hte_analysis.py       # Heterogeneous treatment effects by user segment
 ├── data/
 │   └── ab_data.csv           # Raw experiment data (294K sessions)
 ├── reports/
 │   ├── ab_test_results.png   # Conversion rates, daily trend, lift CI
-│   └── advanced_analysis.png # Novelty effect, posteriors, lift histogram
+│   ├── advanced_analysis.png # Novelty effect, posteriors, lift histogram
+│   └── hte_analysis.png      # Per-segment lift with 95% CI
 ├── requirements.txt
 └── README.md
 ```
@@ -176,8 +183,9 @@ cd ab_test
 
 pip install pandas numpy scipy matplotlib
 
-python src/analysis.py
-python src/further_analysis.py
+python src/analysis.py          # frequentist test, power analysis, business impact
+python src/further_analysis.py  # Bayesian analysis, novelty effect check
+python src/hte_analysis.py      # segment-level HTE analysis
 ```
 
 ---
